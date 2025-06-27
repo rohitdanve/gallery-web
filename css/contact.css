@@ -1,0 +1,52 @@
+ 
+ .hero-section {
+    background: url('../images/contact-banner.png') no-repeat center center;
+    background-size: cover;
+    color: white;
+    text-align: center;
+    padding: 120px 20px;
+    position: relative;
+}
+ 
+ .contact-section {
+      padding: 60px 60px;
+    }
+    .contact-section h2 {
+      font-weight: bold;
+      font-size: 40px;
+    }
+    .contact-section small {
+      color: #ff5722;
+      font-weight: bold;
+    }
+    .contact-info p {
+      margin-bottom: 8px;
+      font-size: 14px;
+      color: #555;
+    }
+    .contact-info strong {
+      font-weight: bold;
+      color: #000;
+    }
+    .contact-form input,
+    .contact-form textarea,
+    .contact-form select {
+      background: #f1f1f1;
+      padding: 15px;
+      width: 100%;
+          margin: 18px -2px 7px 0px;
+      border-radius: 10px;
+      resize: none;
+    }
+    .contact-form button {
+      border: none;
+      padding: 12px 40px !important;
+      font-weight: 600 !important;
+      border-radius: 30px !important;
+      color: #ffffff !important;
+    }
+    @media (max-width: 768px) {
+      .contact-section {
+        padding: 40px 20px;
+      }
+    }

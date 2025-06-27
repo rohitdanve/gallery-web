@@ -1,0 +1,39 @@
+:root {
+    --primary-color: #FF5100;
+    --secondary-color: #FF5100;
+    --text-color: #333;
+    --bg-color: #f5f5f5;
+    --heading-color: #FF5100;
+}
+
+.tabber_section .nav{
+    justify-content: center;
+}
+.tabber_section .nav-item {
+    padding-right: 12px;
+    padding-left:12px;
+    padding-top: 12px;  
+    padding-bottom: 12px;      
+    font-size: 24px;
+}
+
+.tabber_section .tab-pane p{
+text-align: center;
+font-size: 20px;
+}
+
+.tabber_section .nav-pills .nav-link.active, .nav-pills .show>.nav-link {
+    color: #fff;
+    background-color:var(--heading-color);
+    border-radius: 41px;
+    font-size: 18px;
+    box-shadow: none;
+}
+.tabber_section .nav-pills .nav-link{
+      color: var(--heading-color);
+    background-color:#fff;
+    border-radius: 41px;
+    font-size: 18px;  
+    border: 2px solid var(--heading-color);
+    box-shadow: none;
+}
