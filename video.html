@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
-
+<html lang="en" data-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -43,48 +42,48 @@
 
 <body>
     <main class="bg-custom">
-        <header class="">
-            <div class="site-mobile-menu site-navbar-target">
-                <div class="site-mobile-menu-header">
-                    <div class="site-mobile-menu-close">
-                        <span class="icofont-close js-menu-toggle"></span>
-                    </div>
-                </div>
-                <div class="site-mobile-menu-body"></div>
-            </div>
+       <header>
+            <nav class="navbar navbar-expand-lg site-nav">
 
-            <nav class="site-nav">
                 <div class="container">
-                    <div class="">
-                        <div class="site-navigation">
-                            <a href="index.php" class="logo pt-2 m-0 float-start">
-                                <img src="images/logo.svg" alt="" width="100">
-                            </a>
+                    <a class="navbar-brand" href="index.php">
+                        <img src="images/logo.svg" alt="Logo" width="100" class="filter-dark">
+                    </a>
+                    <button class="navbar-toggler custom-toggler" type="button" data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbar" aria-controls="mainNavbar" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="toggler-icon top-bar"></span>
+                        <span class="toggler-icon middle-bar"></span>
+                        <span class="toggler-icon bottom-bar"></span>
+                    </button>
 
-                                <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu float-end">
-                                <li class=""><a href="index.html">Home</a></li>
+                    <div class="collapse navbar-collapse site-menu" id="mainNavbar">
+                        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+                            <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
 
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="portfolio.html" role="button"
+                                    data-bs-toggle="dropdown">
+                                    Portfolio
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li><a class="dropdown-item" href="portfolio.html">Photos</a></li>
+                                    <li><a class="dropdown-item" href="video.html">Video</a></li>
+                                </ul>
+                            </li>
 
-                                <li class="has-children ">
-                                    <a href="portfolio.html">portfolio</a>
-                                    <ul class="dropdown">
-                                        <li><a href="portfolio.html">Photos</a></li>
-                                        <li><a href="video.html">Video</a></li>
-                                    </ul>
-                                </li>
-                                <li class=""><a href="contact.html">Contact</a></li>
-                            </ul>
+                            <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
 
-                            <a href="#"
-                                class="burger light me-auto float-end mt-1 site-menu-toggle js-menu-toggle d-inline-block d-lg-none"
-                                data-toggle="collapse" data-target="#main-navbar">
-                                <span></span>
-                            </a>
-                        </div>
+                            <li class="nav-item">
+                                <button id="toggle-theme" class="theme-toggle"
+                                    title="Toggle Dark/Light Mode">🌙</button>
+                            </li>
+                        </ul>
                     </div>
                 </div>
             </nav>
         </header>
+
 
         <section class="hero-section">
             <div class="container">
@@ -331,6 +330,24 @@
         // Init
         showPage(currentPage);
         setupPagination();
+    </script>
+        <script>
+        const themeToggle = document.getElementById('toggle-theme');
+        const rootElement = document.documentElement;
+
+        // Load theme from localStorage
+        const savedTheme = localStorage.getItem('theme') || 'light';
+        rootElement.setAttribute('data-theme', savedTheme);
+        themeToggle.textContent = savedTheme === 'dark' ? '☀️' : '🌙';
+
+        // Toggle theme
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = rootElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            rootElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            themeToggle.textContent = newTheme === 'dark' ? '☀️' : '🌙';
+        });
     </script>
 </body>
 

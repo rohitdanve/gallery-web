@@ -133,3 +133,6 @@ btn.on("click", function (e) {
 });
 
 $(".counter").countUp();
+
+
+

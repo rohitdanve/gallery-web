@@ -4,8 +4,12 @@
     box-sizing: border-box;
 }
 
+
 body {
-    font-family: "Poppins", sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: Arial, sans-serif;
+    transition: background-color 0.3s, color 0.3s;
 }
 
 p {
@@ -23,12 +27,43 @@ section .highlight {
 
 
 :root {
+    --bg-color: #ffffff;
+    --text-color: #000000;
     --primary-color: #FF5100;
     --secondary-color: #FF5100;
-    --text-color: #333;
-    --bg-color: #f5f5f5;
     --heading-color: #FF5100;
+    --card-bg: #f5f5f5;
+    --footer-bg: #0b0b0d;
+    --footer-text: #fff;
+    --button-bg: #FF5100;
+    --button-text: #fff;
+    --border-color: #e0e0e0;
 }
+
+[data-theme="dark"] {
+    --bg-color: #121212;
+    --text-color: #ffffff;
+    --primary-color: #FF5100;
+    --secondary-color: #FF5100;
+    --heading-color: #FF5100;
+    --card-bg: #232323;
+    --footer-bg: #18181b;
+    --footer-text: #fff;
+    --button-bg: #333;
+    --button-text: #fff;
+    --border-color: #333;
+}
+
+
+.site-nav {
+  background-color: var(--bg-header);
+  color: var(--text-color);
+}
+
+.site-nav a {
+  color: var(--text-color);
+}
+
 
 .color_primary {
     color: var(--primary-color);
@@ -224,6 +259,7 @@ body {
     overflow: hidden;
     border: none;
     transition: transform 0.3s ease;
+    background: transparent;
 }
 
 .product-card:hover {
@@ -281,7 +317,7 @@ body {
 
 .product-info span {
     font-weight: 500;
-    color: #000;
+    color:var(--text-color);
 }
 
 
@@ -715,7 +751,7 @@ body {
     }
 
 
-    
+
     footer a {
         font-size: 14px !important;
     }
