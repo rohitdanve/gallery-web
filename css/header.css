@@ -43,7 +43,7 @@ body {
 
 .site-nav {
     padding: 10px;
-    background-color: var(--bg-color);
+    /* background-color: var(--bg-color); */
     border-bottom: 1px solid var(--border-color);
 }
 
@@ -59,7 +59,7 @@ body {
 
 .site-menu li {
     display: inline-block;
-    margin-left: 15px;
+    width: 100%;
 }
 
 .site-menu a {
@@ -84,9 +84,15 @@ body {
 }
 
 .dropdown-item.active, .dropdown-item:active{
-    background-color: #000000;
+    background-color: var(--primary-color);
     color:#fff;
 }
+
+.dropdown-item:focus, .dropdown-item:hover {
+    color: #1e2125;
+    background-color: var(--primary-color);
+}
+
 
 .theme-toggle {
     background: none;
