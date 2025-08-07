@@ -1,3 +1,6 @@
+<?php include('conn.php'); ?>
+
+
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 
@@ -43,7 +46,7 @@
 
 <body>
     <main class="bg-custom">
-       <?php include_once("include/header.php") ?>
+        <?php include_once("include/header.php") ?>
         <section class="hero-section">
             <div class="container">
                 <h1 style="color: #FF5100;">
@@ -79,7 +82,7 @@
                         <!-- Nav pills -->
                         <ul class="nav nav-pills">
                             <li class="nav-item">
-                                <a class="nav-link btn active" >
+                                <a class="nav-link btn active">
                                     <i class="bi bi-image me-1"></i> Photo
                                 </a>
                             </li>
@@ -102,56 +105,28 @@
 
                 <div class="row g-4" id="blogContainer">
                     <!-- Item 1 -->
-                    <div class="col-md-3 col-sm-6 blog-item">
+
+
+
+
+
+                    <?php
+                    $productQuery = $conn->query("SELECT * FROM products ORDER BY created_at DESC LIMIT 3");
+                    while ($product = $productQuery->fetch_assoc()) {
+                        echo '
+          <div class="col-md-3 col-sm-6 blog-item">
                         <div class="card product-card">
-                            <img src="images/portfolio/Radha.png" class="product-image" alt="Radha" />
+                            <img src="admin/uploads/' . $product['image'] . '" class="product-image" alt="Radha" />
                             <div class="sale-badge">Sale</div>
 
                             <div class="product-info text-center">
-                                <h6>Radha</h6>
-                                <span>₹3555</span>
+                                <h6>' . htmlspecialchars($product['name']) . '</h6>
+                                <span>₹' . number_format($product['price'], 2) . '</span>
                             </div>
                         </div>
-                    </div>
-
-                    <!-- Item 2 -->
-                    <div class="col-md-3 col-sm-6 blog-item">
-                        <div class="card product-card">
-                            <img src="images/portfolio/fantasy.png" class="product-image" alt="Fantasy" />
-                            <div class="sale-badge">Sale</div>
-
-                            <div class="product-info text-center">
-                                <h6>Fantasy</h6>
-                                <span>₹7999</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="col-md-3 col-sm-6 blog-item">
-                        <div class="card product-card">
-                            <img src="images/portfolio/Peacock.png" class="product-image" alt="Peacock Love" />
-                            <div class="sale-badge">Sale</div>
-
-                            <div class="product-info text-center">
-                                <h6>Peacock Love</h6>
-                                <span>₹4999</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item 4 -->
-                    <div class="col-md-3 col-sm-6 blog-item">
-                        <div class="card product-card">
-                            <img src="images/portfolio/Abstract.png" class="product-image" alt="Abstract" />
-                            <div class="sale-badge">Sale</div>
-
-                            <div class="product-info text-center">
-                                <h6>Abstract</h6>
-                                <span>₹5999</span>
-                            </div>
-                        </div>
-                    </div>
+                    </div>';
+                    }
+                    ?>
                 </div>
                 <!-- Pagination -->
                 <nav class="mt-4">
@@ -164,10 +139,10 @@
 
     </main>
 
- <?php include_once("include/footer.php") ?>
+    <?php include_once("include/footer.php") ?>
 
-  
-   <script>
+
+    <script>
         const itemsPerPage = 12;
         let currentPage = 1;
 

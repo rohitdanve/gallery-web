@@ -1,3 +1,5 @@
+<?php include('conn.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en" data-theme="light">
 
@@ -44,7 +46,7 @@
 <body>
     <main class="bg-custom">
         <!--start top header-->
-    <?php include_once("include/header.php") ?>
+        <?php include_once("include/header.php") ?>
 
 
         <section class="hero-section">
@@ -62,14 +64,6 @@
                 </div>
             </div>
         </section>
-
-
-
-
-
-
-
-
         <section class="tabber_section section-title ">
             <div class="container mt-3">
                 <div class="row">
@@ -105,56 +99,34 @@
 
                 <div class="row g-4" id="blogContainer">
                     <!-- Item 1 -->
-                    <div class="col-md-3 col-sm-6 blog-item">
-                        <div class="card product-card">
-                            <img src="images/portfolio/Radha.png" class="product-image" alt="Radha" />
-                            <div class="sale-badge">Sale</div>
+                    <div class="row">
+                        <?php
+                        $videoQuery = $conn->query("SELECT * FROM videos ORDER BY created_at DESC LIMIT 3");
+                        while ($video = $videoQuery->fetch_assoc()) {
+                            // Extract YouTube Video ID
+                            preg_match(
+                                "/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=))([^\?&\"'>]+)/",
+                                $video['link'],
+                                $matches
+                            );
+                            $videoID = $matches[1] ?? '';
 
-                            <div class="product-info text-center">
-                                <h6>Radha</h6>
-                                <span>₹3555</span>
+                            if ($videoID) {
+                                $embedURL = "https://www.youtube.com/embed/" . htmlspecialchars($videoID);
+                                echo '
+                            <div class="col-md-4 col-sm-6 mb-4 blog-item">
+                            <div class="card product-card h-100 shadow-sm">
+                                <iframe class="card-img-top" src="' . $embedURL . '" frameborder="0" allowfullscreen style="height: 200px;"></iframe>
+                                <div class="card-body">
+                                <h5 class="card-title">' . htmlspecialchars($video['title']) . '</h5>
+                                </div>
                             </div>
-                        </div>
+                            </div>';
+                            }
+                        }
+                        ?>
                     </div>
 
-                    <!-- Item 2 -->
-                    <div class="col-md-3 col-sm-6 blog-item">
-                        <div class="card product-card">
-                            <img src="images/portfolio/fantasy.png" class="product-image" alt="Fantasy" />
-                            <div class="sale-badge">Sale</div>
-
-                            <div class="product-info text-center">
-                                <h6>Fantasy</h6>
-                                <span>₹7999</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item 3 -->
-                    <div class="col-md-3 col-sm-6 blog-item">
-                        <div class="card product-card">
-                            <img src="images/portfolio/Peacock.png" class="product-image" alt="Peacock Love" />
-                            <div class="sale-badge">Sale</div>
-
-                            <div class="product-info text-center">
-                                <h6>Peacock Love</h6>
-                                <span>₹4999</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Item 4 -->
-                    <div class="col-md-3 col-sm-6 blog-item">
-                        <div class="card product-card">
-                            <img src="images/portfolio/Abstract.png" class="product-image" alt="Abstract" />
-                            <div class="sale-badge">Sale</div>
-
-                            <div class="product-info text-center">
-                                <h6>Abstract</h6>
-                                <span>₹5999</span>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 <!-- Pagination -->
                 <nav class="mt-4">
@@ -167,10 +139,10 @@
 
     </main>
 
-   <?php include_once("include/footer.php") ?>
+    <?php include_once("include/footer.php") ?>
 
-  
-   <script>
+
+    <script>
         const itemsPerPage = 12;
         let currentPage = 1;
 

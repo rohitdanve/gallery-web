@@ -77,7 +77,7 @@ if (!isset($_SESSION['username'])) {
                                                 while ($row = $res->fetch_assoc()) {
                                                     echo "<tr>
                     <td>{$row['title']}</td>
-                    <td>₹{$row['link']}</td>
+                    <td>{$row['link']}</td>
                     <td>
                         <a href='video-edit.php?id={$row['id']}' class='btn btn-warning btn-sm'><i class='bi bi-pencil-square'></i></a>
                         <a href='delete-video.php?id={$row['id']}' class='btn btn-danger btn-sm' onclick='return confirm(\"Delete this Photo?\")'><i class='bi bi-trash'></i></a>

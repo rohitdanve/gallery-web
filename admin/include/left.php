@@ -60,14 +60,14 @@ if (isset($_GET['error']) && $_GET['error'] == 'invalid_access') {
       </ul>
     </li>
 
-    <li>
+    <!-- <li>
       <a  href="contact.php">
         <div class="parent-icon">
           <i class="bi bi-people"></i>
         </div>
         <div class="menu-title">View Contact</div>
       </a>
-    </li>
+    </li> -->
 
     
 

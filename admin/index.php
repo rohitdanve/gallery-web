@@ -46,7 +46,7 @@ if (!isset($_SESSION['username'])) {
           <div class="ps-3">
             <nav aria-label="breadcrumb">
               <ol class="breadcrumb mb-0 p-0 align-items-center">
-                <li class="breadcrumb-item active" aria-current="page">Profile</li>
+                <li class="breadcrumb-item active" aria-current="page">Latest Work</li>
               </ol>
             </nav>
           </div>
@@ -76,30 +76,37 @@ if (!isset($_SESSION['username'])) {
         <div class="container mt-5">
 
 
-          <hr class="my-5">
+       
 
           <h3 class="mb-4">🎬 Latest 3 Videos</h3>
-          <div class="row">
-            <?php
-            $videoQuery = $conn->query("SELECT * FROM videos ORDER BY created_at DESC LIMIT 3");
-            while ($video = $videoQuery->fetch_assoc()) {
-              // Extract YouTube embed URL
-              $videoURL = $video['link'];
-              $embedURL = preg_replace(
-                "/^.*(?:youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=)([^#\&\?]*).*/",
-                "https://www.youtube.com/embed/$1",
-                $videoURL
-              );
+    <div class="row">
+  <?php
+  $videoQuery = $conn->query("SELECT * FROM videos ORDER BY created_at DESC LIMIT 3");
+  while ($video = $videoQuery->fetch_assoc()) {
+    // Extract YouTube Video ID
+    preg_match(
+      "/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=))([^\?&\"'>]+)/",
+      $video['link'],
+      $matches
+    );
+    $videoID = $matches[1] ?? '';
 
-              echo '<div class="col-md-4 media-card">
-                <div class="card h-100 shadow-sm">
-                  <iframe class="card-img-top" src="' . $embedURL . '" frameborder="0" allowfullscreen style="height: 200px;"></iframe>
-                  <div class="card-body">
-                    <h5 class="card-title
-                </div>';
-            }
-            ?>
+    if ($videoID) {
+      $embedURL = "https://www.youtube.com/embed/" . htmlspecialchars($videoID);
+      echo '
+        <div class="col-md-4 col-sm-6 mb-4">
+          <div class="card h-100 shadow-sm">
+            <iframe class="card-img-top" src="' . $embedURL . '" frameborder="0" allowfullscreen style="height: 200px;"></iframe>
+            <div class="card-body">
+              <h5 class="card-title">' . htmlspecialchars($video['title']) . '</h5>
+            </div>
           </div>
+        </div>';
+    }
+  }
+  ?>
+</div>
+
         </div>
 
 
