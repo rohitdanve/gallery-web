@@ -106,10 +106,6 @@
                 <div class="row g-4" id="blogContainer">
                     <!-- Item 1 -->
 
-
-
-
-
                     <?php
                     $productQuery = $conn->query("SELECT * FROM products ORDER BY created_at DESC LIMIT 3");
                     while ($product = $productQuery->fetch_assoc()) {
